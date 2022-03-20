@@ -1,22 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Day_6_Logical_Programming_Practice_Problem
+namespace ConsoleApp1
 {
-    internal class Program
+    class CouponNumberGenerator
     {
-        static void Main(string[] args)
-        { 
-        int n, reverse = 0, rem;
-        Console.Write("Enter a number: ");      
-       n= int.Parse(Console.ReadLine());     
-       while(n!=0)      
-       {      
-        rem=n%10;        
-        reverse=reverse*10+rem;      
-        n/=10;      
-       }
-    Console.Write("Reversed Number: "+reverse);       
-    }  
+        public CouponNumberGenerator()
+        {
+            Console.WriteLine("enter the number of distinct Coupon number you Want: ");
+            string[] coupons = Coupon(Utility.ReadInt());
+            foreach (String value in coupons)
+            {
+                Console.WriteLine("the coupon number generated is : " + value);
+            }
+
+        }
+        public string[] Coupon(int n)
+        {
+            string[] Array = new string[n];
+            int i = 0;
+            while (i < n)
+            {
+                String value = "";
+                value = value + RandomValue.bigChar() + RandomValue.IntRange(500, 10000) + RandomValue.RandomString() +
+                   RandomValue.IntRange(1000, 2000);
+                foreach (string checking in Array)
+                {
+                    if ((value.Equals(checking)))
+                    {
+                        i--;
+                    }
+                }
+                Array[i++] = value;
+            }
+
+            return Array;
+
+        }
 
     }
 }
