@@ -1,43 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
+using System.Diagnostics;
+using System.Threading;
 namespace ConsoleApp1
 {
-    class CouponNumberGenerator
+    class StopWatch
     {
-        public CouponNumberGenerator()
+       
+
+        public StopWatch()
         {
-            Console.WriteLine("enter the number of distinct Coupon number you Want: ");
-            string[] coupons = Coupon(Utility.ReadInt());
-            foreach (String value in coupons)
+
+            Stopwatch s = new Stopwatch();
+            s.Start();int sec = 0;
+            while(true)
             {
-                Console.WriteLine("the coupon number generated is : " + value);
+                
+                
+                Console.Clear();
+                
+                String format = String.Format("{0:00}:{1:00}",sec/60%60,sec++%60);
+                Console.Write("running : "+format);
+                Thread.Sleep(990);
+                //char ch = char.Parse(Console.ReadLine());
+                //if(ch=='c')
+                //{
+                //    System.Environment.Exit(0);
+                //}
+
+
             }
-
         }
-        public string[] Coupon(int n)
-        {
-            string[] Array = new string[n];
-            int i = 0;
-            while (i < n)
-            {
-                String value = "";
-                value = value + RandomValue.bigChar() + RandomValue.IntRange(500, 10000) + RandomValue.RandomString() +
-                   RandomValue.IntRange(1000, 2000);
-                foreach (string checking in Array)
-                {
-                    if ((value.Equals(checking)))
-                    {
-                        i--;
-                    }
-                }
-                Array[i++] = value;
-            }
-
-            return Array;
-
-        }
-
     }
 }
